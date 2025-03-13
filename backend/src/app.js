@@ -13,7 +13,9 @@ const app = express();
 const server = createServer(app);
 const io = connectToSocket(server);
 
-
+app.get("/home",(req,res) => {
+    return res.json({"hello":"world"})
+});
 app.set("port", (process.env.PORT || 8000))
 app.use(cors());
 app.use(express.json({ limit: "40kb" }));
@@ -23,8 +25,7 @@ app.use("/api/v1/users", userRoutes);
 
 const start = async () => {
     app.set("mongo_user")
-    const connectionDb = await mongoose.connect("mongodb+srv://imdigitalashish:imdigitalashish@cluster0.cujabk4.mongodb.net/")
-
+    const connectionDb = await mongoose.connect("mongodb+srv://aaryakalawat1219:68bd1f4f1085@cluster0.9myxb.mongodb.net/zoomDB")
     console.log(`MONGO Connected DB HOst: ${connectionDb.connection.host}`)
     server.listen(app.get("port"), () => {
         console.log("LISTENIN ON PORT 8000")
